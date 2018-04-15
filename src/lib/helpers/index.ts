@@ -1,5 +1,3 @@
-import { AbstractApiWrapper } from '../api/abstract-api-wrapper';
-
 export const timingWrapper = <T>(fn: Function, ms: number): Promise<T> => {
   return new Promise(
     resolve => setTimeout(
