@@ -4,7 +4,9 @@
   "description": "Robot which trades by crypto-currencies with EMA( exponential moving averages )-intersection strategy, new strategies very soon and also will be added arbitration strategy",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon watch ./build"
+    "dev": "nodemon watch ./build",
+    "pm": "pm2 kill && pm2 start build/index.js && pm2 logs",
+    "build": "rm -rf ./build & tsc -p tsconfig.json"
   },
   "repository": {
     "type": "git",
