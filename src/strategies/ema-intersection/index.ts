@@ -53,7 +53,7 @@ export interface IStockHandler {
 
 
 export class EMAIntersection {
-  private loopTime: number = 3600; // in seconds
+  private loopTime: number = 300; // in seconds
   private coinAmount: number = 100;
   private products: IProduct[] = [];
   private ticker: NodeJS.Timer | boolean;
@@ -165,6 +165,7 @@ export class EMAIntersection {
   public async run(): Promise<boolean> {
     if (this.products instanceof Array && this.products.length !== 0) {
       await this.refreshEmaList();
+      console.log(`\r\n\r\n${new Date()}`);
       await Promise.all(this.products.map(
         async (coin: IProduct, key: number) => timingWrapper(
           () => this.doTrading(coin),
@@ -253,8 +254,8 @@ export class EMAIntersection {
       console.log(`\r\n\r\n${this.stockHandler.title} ->> `,
         coin.title, 'qty - side - ask ->',
         `${coin.qty} - ${coin.side} - ${coin.ask}`,
-        `\r\nfast`, fast,
-        `\r\nslow`, slow,
+        `\r\nfast`, fast.slice(-2),
+        `\r\nslow`, slow.slice(-2),
       );
       if (coin.side === 'buy') {
         if (
