@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon watch ./build",
+    "pm": "pm2 kill && pm2 start build/index.js && pm2 logs",
     "build": "rm -rf ./build & tsc -p tsconfig.json"
   },
   "repository": {
